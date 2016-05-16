@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="legaliteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="actividad" />
+          </Key>
+          <Property Name="actividad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Valor" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="asesores">
+          <Key>
+            <PropertyRef Name="idasesor" />
+          </Key>
+          <Property Name="idasesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreusuario" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="nivel" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="salariobasico" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="costodiario" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="costohora" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="nit" />
+          </Key>
+          <Property Name="nit" Type="int" Nullable="false" />
+          <Property Name="nombreusuario" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="departamento" Type="varchar" MaxLength="50" />
+          <Property Name="valor" Type="int" />
+        </EntityType>
+        <EntityType Name="detallesolicitud">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="int" Nullable="false" />
+          <Property Name="idsolicitud" Type="int" />
+          <Property Name="respuestaasesor" Type="varchar" MaxLength="100" />
+          <Property Name="mensajecliente" Type="varchar" MaxLength="100" />
+          <Property Name="fechahoraactualizacion" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="solicitudes">
+          <Key>
+            <PropertyRef Name="idsolicitud" />
+          </Key>
+          <Property Name="idsolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nitcliente" Type="int" />
+          <Property Name="idasesor" Type="int" />
+          <Property Name="actividad" Type="varchar" MaxLength="100" />
+          <Property Name="fechaHoraInicio" Type="datetime" />
+          <Property Name="FechaHoraFin" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="Requerimiento" Type="varchar" MaxLength="100" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_detallesolicitud_solicitudes">
+          <End Role="solicitudes" Type="Self.solicitudes" Multiplicity="0..1" />
+          <End Role="detallesolicitud" Type="Self.detallesolicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitudes">
+              <PropertyRef Name="idsolicitud" />
+            </Principal>
+            <Dependent Role="detallesolicitud">
+              <PropertyRef Name="idsolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_solicitudes_actividades">
+          <End Role="actividades" Type="Self.actividades" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividades">
+              <PropertyRef Name="actividad" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_solicitudes_asesores">
+          <End Role="asesores" Type="Self.asesores" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asesores">
+              <PropertyRef Name="idasesor" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="idasesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_solicitudes_clientes">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="nit" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="nitcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="legaliteModelStoreContainer">
+          <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="asesores" EntityType="Self.asesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detallesolicitud" EntityType="Self.detallesolicitud" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="solicitudes" EntityType="Self.solicitudes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_detallesolicitud_solicitudes" Association="Self.FK_detallesolicitud_solicitudes">
+            <End Role="solicitudes" EntitySet="solicitudes" />
+            <End Role="detallesolicitud" EntitySet="detallesolicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK_solicitudes_actividades" Association="Self.FK_solicitudes_actividades">
+            <End Role="actividades" EntitySet="actividades" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_solicitudes_asesores" Association="Self.FK_solicitudes_asesores">
+            <End Role="asesores" EntitySet="asesores" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_solicitudes_clientes" Association="Self.FK_solicitudes_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="legaliteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividade">
+          <Key>
+            <PropertyRef Name="actividad" />
+          </Key>
+          <Property Name="actividad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="solicitudes" Relationship="Self.FK_solicitudes_actividades" FromRole="actividades" ToRole="solicitudes" />
+        </EntityType>
+        <EntityType Name="asesore">
+          <Key>
+            <PropertyRef Name="idasesor" />
+          </Key>
+          <Property Name="idasesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreusuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nivel" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salariobasico" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="costodiario" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="costohora" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="solicitudes" Relationship="Self.FK_solicitudes_asesores" FromRole="asesores" ToRole="solicitudes" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="nit" />
+          </Key>
+          <Property Name="nit" Type="Int32" Nullable="false" />
+          <Property Name="nombreusuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Int32" />
+          <NavigationProperty Name="solicitudes" Relationship="Self.FK_solicitudes_clientes" FromRole="clientes" ToRole="solicitudes" />
+        </EntityType>
+        <EntityType Name="detallesolicitud">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="Int32" Nullable="false" />
+          <Property Name="idsolicitud" Type="Int32" />
+          <Property Name="respuestaasesor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mensajecliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechahoraactualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="solicitude" Relationship="Self.FK_detallesolicitud_solicitudes" FromRole="detallesolicitud" ToRole="solicitudes" />
+        </EntityType>
+        <EntityType Name="solicitude">
+          <Key>
+            <PropertyRef Name="idsolicitud" />
+          </Key>
+          <Property Name="idsolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nitcliente" Type="Int32" />
+          <Property Name="idasesor" Type="Int32" />
+          <Property Name="actividad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaHoraInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaHoraFin" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Requerimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actividade" Relationship="Self.FK_solicitudes_actividades" FromRole="solicitudes" ToRole="actividades" />
+          <NavigationProperty Name="asesore" Relationship="Self.FK_solicitudes_asesores" FromRole="solicitudes" ToRole="asesores" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK_solicitudes_clientes" FromRole="solicitudes" ToRole="clientes" />
+          <NavigationProperty Name="detallesolicituds" Relationship="Self.FK_detallesolicitud_solicitudes" FromRole="solicitudes" ToRole="detallesolicitud" />
+        </EntityType>
+        <Association Name="FK_solicitudes_actividades">
+          <End Role="actividades" Type="Self.actividade" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividades">
+              <PropertyRef Name="actividad" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_solicitudes_asesores">
+          <End Role="asesores" Type="Self.asesore" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asesores">
+              <PropertyRef Name="idasesor" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="idasesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_solicitudes_clientes">
+          <End Role="clientes" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="solicitudes" Type="Self.solicitude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="nit" />
+            </Principal>
+            <Dependent Role="solicitudes">
+              <PropertyRef Name="nitcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detallesolicitud_solicitudes">
+          <End Role="solicitudes" Type="Self.solicitude" Multiplicity="0..1" />
+          <End Role="detallesolicitud" Type="Self.detallesolicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitudes">
+              <PropertyRef Name="idsolicitud" />
+            </Principal>
+            <Dependent Role="detallesolicitud">
+              <PropertyRef Name="idsolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="legaliteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividades" EntityType="Self.actividade" />
+          <EntitySet Name="asesores" EntityType="Self.asesore" />
+          <EntitySet Name="clientes" EntityType="Self.cliente" />
+          <EntitySet Name="detallesolicituds" EntityType="Self.detallesolicitud" />
+          <EntitySet Name="solicitudes" EntityType="Self.solicitude" />
+          <AssociationSet Name="FK_solicitudes_actividades" Association="Self.FK_solicitudes_actividades">
+            <End Role="actividades" EntitySet="actividades" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_solicitudes_asesores" Association="Self.FK_solicitudes_asesores">
+            <End Role="asesores" EntitySet="asesores" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_solicitudes_clientes" Association="Self.FK_solicitudes_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="solicitudes" EntitySet="solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detallesolicitud_solicitudes" Association="Self.FK_detallesolicitud_solicitudes">
+            <End Role="solicitudes" EntitySet="solicitudes" />
+            <End Role="detallesolicitud" EntitySet="detallesolicituds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="legaliteModelStoreContainer" CdmEntityContainer="legaliteEntities">
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="legaliteModel.actividade">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asesores">
+            <EntityTypeMapping TypeName="legaliteModel.asesore">
+              <MappingFragment StoreEntitySet="asesores">
+                <ScalarProperty Name="idasesor" ColumnName="idasesor" />
+                <ScalarProperty Name="nombreusuario" ColumnName="nombreusuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="salariobasico" ColumnName="salariobasico" />
+                <ScalarProperty Name="costodiario" ColumnName="costodiario" />
+                <ScalarProperty Name="costohora" ColumnName="costohora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="legaliteModel.cliente">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="nombreusuario" ColumnName="nombreusuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detallesolicituds">
+            <EntityTypeMapping TypeName="legaliteModel.detallesolicitud">
+              <MappingFragment StoreEntitySet="detallesolicitud">
+                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
+                <ScalarProperty Name="idsolicitud" ColumnName="idsolicitud" />
+                <ScalarProperty Name="respuestaasesor" ColumnName="respuestaasesor" />
+                <ScalarProperty Name="mensajecliente" ColumnName="mensajecliente" />
+                <ScalarProperty Name="fechahoraactualizacion" ColumnName="fechahoraactualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitudes">
+            <EntityTypeMapping TypeName="legaliteModel.solicitude">
+              <MappingFragment StoreEntitySet="solicitudes">
+                <ScalarProperty Name="idsolicitud" ColumnName="idsolicitud" />
+                <ScalarProperty Name="nitcliente" ColumnName="nitcliente" />
+                <ScalarProperty Name="idasesor" ColumnName="idasesor" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Requerimiento" ColumnName="Requerimiento" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
