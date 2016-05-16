@@ -1,0 +1,77 @@
+﻿@model IEnumerable<legaliteNET.Models.asesore>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreusuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nivel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salariobasico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.costodiario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.costohora)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreusuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salariobasico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costodiario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costohora)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.idasesor }) |
+                @Html.ActionLink("Details", "Details", new { id=item.idasesor }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.idasesor })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

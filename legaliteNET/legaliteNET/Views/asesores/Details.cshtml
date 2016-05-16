@@ -1,0 +1,82 @@
+﻿@model legaliteNET.Models.asesore
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>asesore</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombreusuario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nombreusuario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nivel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nivel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.salariobasico)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.salariobasico)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.costodiario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.costodiario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.costohora)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.costohora)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idasesor }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
