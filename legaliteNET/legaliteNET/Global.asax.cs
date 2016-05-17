@@ -14,5 +14,37 @@ namespace legaliteNET
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Redirect("~/asesores/logIn");
+        }
+        protected void Session_End(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Redirect("~/Default");
+        }
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
+            RouteData rd = RouteTable.Routes.GetRouteData(context);
+
+            if (rd != null)
+            {
+                string controllerName = rd.GetRequiredString("controller");
+                string actionName = rd.GetRequiredString("action");
+                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~/asesores/logIn"); }
+                else
+                {
+                    if (Session["xrol"] != null)
+                    {
+                        int role = Convert.ToInt32(Session["xrol"].ToString());
+                        if (role == 1 && controllerName != "clientes" && controllerName != "asesores" && controllerName != "actividades" && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/"); };
+                        if (role == 2 && (controllerName == "Entidad_Servidor" || controllerName == "Tipo_Requerimiento")) { HttpContext.Current.Response.Redirect("~/"); };
+                      
+                        }
+                }
+
+            }
+
+        }
     }
 }

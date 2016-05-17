@@ -1,0 +1,54 @@
+﻿@model legaliteNET.Models.asesore
+
+@{
+    ViewBag.Title = "logIn";
+    Layout = "";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="allcp-form theme-primary mw320" id="login">
+        <div class="text-center mb20">
+            <img src="~/assets/img/logo_login_form.png" class="img-responsive"
+                 alt="Logo" />
+        </div>
+        <div class="panel mw320">
+            <div class="panel-body pn mv10">
+
+                <legend>Inicia sesión ASESORES</legend>
+                <div>@Html.Label("Nombre de usuario") </div>
+                <div class="section">
+                    <label for="nombreusuario" class="field prepend-icon">
+                        @Html.EditorFor(u => u.nombreusuario, new { htmlAttributes = new { @class = "gui-input" } })
+                        @Html.ValidationMessageFor(u => u.nombreusuario)
+                        <label for="nombreusuario" class="field-icon">
+                            <i class="fa fa-key"></i>
+                        </label>
+                    </label>
+                </div>
+
+                <div>@Html.Label("Contraseña") </div>
+                <div class="section">
+                    <label for="password" class="field prepend-icon">
+                        @Html.PasswordFor(u => u.password, new { @class = "gui-input" })
+                        @Html.ValidationMessageFor(u => u.password)
+                        <label for="password" class="field-icon">
+                            <i class="fa fa-lock"></i>
+                        </label>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="submit" value="Ingresar" class="btn btn-bordered btn-primary pull-left" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ValidationSummary(true, "Favor verificar, datos erroneos")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

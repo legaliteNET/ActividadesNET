@@ -6,6 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web.Security;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Data.SqlClient;
 using legaliteNET.Models;
 
 namespace legaliteNET.Controllers
@@ -113,6 +119,93 @@ namespace legaliteNET.Controllers
             db.asesores.Remove(asesore);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        //valida si el usuario es valido//
+        public async Task<ActionResult> logIn()
+        {
+
+            if (Session["username"] == null)
+            {
+                return View("asesores", "asesores/logIn");
+            }
+            else
+            {
+                return Redirect("~/");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult logIn(Models.asesore user)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                if (IsValid(user.nombreusuario, user.password))
+                {
+                    var usua = from a in db.asesores
+                               where a.nombreusuario == user.nombreusuario && a.password == user.password
+                               select a;
+
+
+                    if (usua.First().nivel == 1)
+                    {
+                        FormsAuthentication.SetAuthCookie(user.nombreusuario, false);
+
+                        String nombreusuario = usua.First().nombreusuario;
+                        Session["username"] = user.nombreusuario;
+                        Session["asesorid"] = usua.First().idasesor;
+                        Session["asesornombre"] = usua.First().nombre;
+                        Session["xrol"] = usua.First().nivel;
+                        if (usua.First().nivel == 2)
+                        {
+                            Session["username"] = user.nombreusuario;
+                            Session["asesorid"] = usua.First().idasesor;
+                            Session["asesornombre"] = usua.First().nombre;
+                            Session["xrol"] = usua.First().nivel;
+                            return RedirectToAction("solicitudes", "index");
+                        }               
+
+                        return RedirectToAction("reportes", "index");
+                    }
+                    else
+                    {
+                        return View("asesores", "logIn");
+                    }
+                }
+            }
+            return View(user);
+        }
+
+        private bool IsValid(string nombreusuario, string password)
+        {
+            var usua = from a in db.asesores
+                       where a.nombreusuario == nombreusuario && a.password == password
+                       select a.nombreusuario;
+
+            if (usua.Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+
+        }
+
+        public ActionResult CerrarSesion()
+        {
+            HttpCookie myCookie = new HttpCookie("cmq");
+            myCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(myCookie);
+            string[] cookies = Request.Cookies.AllKeys;
+            foreach (string cookie in cookies)
+            {
+                Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
+            }
+            Session.Clear();
+            Session.Abandon();
+            return Redirect("~/Default");
+
+
         }
 
         protected override void Dispose(bool disposing)
