@@ -31,7 +31,7 @@ namespace legaliteNET
             {
                 string controllerName = rd.GetRequiredString("controller");
                 string actionName = rd.GetRequiredString("action");
-                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~/asesores/logIn"); }
+                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("logIn"); }
                 else
                 {
                     if (Session["xrol"] != null)

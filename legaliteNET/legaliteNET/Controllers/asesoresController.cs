@@ -126,7 +126,7 @@ namespace legaliteNET.Controllers
 
             if (Session["username"] == null)
             {
-                return View("asesores", "asesores/logIn");
+                return View("logIn", "");
             }
             else
             {
@@ -163,14 +163,14 @@ namespace legaliteNET.Controllers
                             Session["asesorid"] = usua.First().idasesor;
                             Session["asesornombre"] = usua.First().nombre;
                             Session["xrol"] = usua.First().nivel;
-                            return RedirectToAction("solicitudes", "index");
+                            return RedirectToAction("index", "asesores");
                         }               
 
-                        return RedirectToAction("reportes", "index");
+                        return RedirectToAction("index", "asesores");
                     }
                     else
                     {
-                        return View("asesores", "logIn");
+                        return View("login", "asesores");
                     }
                 }
             }
