@@ -23,15 +23,24 @@ namespace legaliteNET.Controllers
         // GET: asesores
         public ActionResult Index()
         {
-            string nivel = Session["xrol"].ToString();
-            if (nivel == "2")
-            {
+            //ok ud esta asignandondo sin antte y trate de usar try cath para que qeu no se reviente bayjajaja ok ahora lo molesto aver
+        
+                if (Session["nombreuser"] != null)
+
+                {
+                return Redirect("~/asesores/logIn");
+
+                }
+
+                else
+                {
                 return View(db.asesores.ToList());
                 
-            }
-            else {
-                return Redirect("~/default");
-            }
+                }
+      
+            
+
+           
         }        
         // GET: asesores/Details/5
         public ActionResult Details(int? id)
@@ -153,14 +162,12 @@ namespace legaliteNET.Controllers
                     var usua = from a in db.asesores
                                where a.nombreusuario == user.nombreusuario && a.password == user.password
                                select a;
-
-
                     if (usua.First().nivel == 1)
                     {
                         FormsAuthentication.SetAuthCookie(user.nombreusuario, false);
 
-                        String nombreusuario = usua.First().nombreusuario;
-                        Session["username"] = usua.First().nombreusuario;
+                        String nombreusuario = user.nombreusuario;
+                        Session["username"] = user.nombreusuario;
                         Session["asesorid"] = usua.First().idasesor;
                         Session["asesornombre"] = usua.First().nombre;
                         Session["xrol"] = usua.First().nivel;

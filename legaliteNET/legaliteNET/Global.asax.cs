@@ -16,11 +16,11 @@ namespace legaliteNET
         }
         protected void Session_Start(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/asesores/index");
+            HttpContext.Current.Response.Redirect("~/asesores");
         }
         protected void Session_End(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/Default");
+            HttpContext.Current.Response.Redirect("~/clientes");
         }
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace legaliteNET
             {
                 string controllerName = rd.GetRequiredString("controller");
                 string actionName = rd.GetRequiredString("action");
-                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("logIn"); }
+                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~asesores/logIn"); }
                 else
                 {
                     if (Session["xrol"] != null)
