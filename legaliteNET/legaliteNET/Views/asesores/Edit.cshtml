@@ -1,7 +1,7 @@
 ﻿@model legaliteNET.Models.asesore
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>asesore</h4>
+            <h4>Asesor</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.idasesor)

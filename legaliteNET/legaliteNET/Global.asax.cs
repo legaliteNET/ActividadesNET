@@ -16,7 +16,7 @@ namespace legaliteNET
         }
         protected void Session_Start(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/asesores/logIn");
+            HttpContext.Current.Response.Redirect("~/asesores/index");
         }
         protected void Session_End(object sender, EventArgs e)
         {

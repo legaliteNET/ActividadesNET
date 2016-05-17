@@ -2,12 +2,24 @@
 
 @{
     ViewBag.Title = "logIn";
-    Layout = "";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
+
+    <div class="allcp-form theme-primary mw320" id="login">
 @using (Html.BeginForm())
 {
-    <div class="allcp-form theme-primary mw320" id="login">
+    @Html.AntiForgeryToken()
+
+    if (Html.ValidationSummary(true) != null)
+    {
+        <script>
+              $.Notify({
+                        caption: 'Problema al iniciar sesión',
+                        content: 'Revisa tus datos y vuelve a intentarlo',
+                        type: 'alert'
+                        });</script>
+    }
         <div class="text-center mb20">
             <img src="~/assets/img/logo_login_form.png" class="img-responsive"
                  alt="Logo" />
@@ -15,31 +27,27 @@
         <div class="panel mw320">
             <div class="panel-body pn mv10">
 
-                <legend>Inicia sesión ASESORES</legend>
+                <h1 class="text-light">Inicio de sesión</h1>
                 <div>@Html.Label("Nombre de usuario") </div>
-                <div class="section">
-                    <label for="nombreusuario" class="field prepend-icon">
-                        @Html.EditorFor(u => u.nombreusuario, new { htmlAttributes = new { @class = "gui-input" } })
-                        @Html.ValidationMessageFor(u => u.nombreusuario)
-                        <label for="nombreusuario" class="field-icon">
-                            <i class="fa fa-key"></i>
-                        </label>
-                    </label>
+                <div class="input-control text full-size" data-role="input">
+                    <label for="Documento">Documento</label>
+                    @Html.EditorFor(model => model.nombreusuario, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nombreusuario)
+                    <button class="button helper-button clear"><span class="mif-cross"></span></button>
                 </div>
 
                 <div>@Html.Label("Contraseña") </div>
                 <div class="section">
-                    <label for="password" class="field prepend-icon">
-                        @Html.PasswordFor(u => u.password, new { @class = "gui-input" })
-                        @Html.ValidationMessageFor(u => u.password)
-                        <label for="password" class="field-icon">
-                            <i class="fa fa-lock"></i>
-                        </label>
-                    </label>
+                    <div class="input-control password full-size" data-role="input">
+                    <label for="Contrasena">Contraseña</label>
+                    @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password)
+                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="submit" value="Ingresar" class="btn btn-bordered btn-primary pull-left" />
+                     <button type="submit" class="btn btn-bordered btn-primary pull-left">Entrar</button>
                     </div>
                 </div>
                 <div class="row">
@@ -48,7 +56,14 @@
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
 }
+</div>
+
+@if (Request.IsAuthenticated)
+{
+    @Html.Raw("LOL");
+}
+
 

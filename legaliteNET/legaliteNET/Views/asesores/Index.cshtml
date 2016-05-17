@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<legaliteNET.Models.asesore>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,34 +9,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Cree nuevo asesor</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
+
+
+
+
+    <p> <br />
+        @Html.ActionLink("CREAR NUEVO ASESOR", "Create")
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nombreusuario)
+                NOMBRE DE USUARIO
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.password)
+              PASSWORD
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nivel)
+               NIVEL
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+               NOMBRE
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.salariobasico)
+              SALARIO BASICO
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.costodiario)
+             COSTO DIARIO
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.costohora)
+                COSTO POR HORA
             </th>
             <th></th>
         </tr>
@@ -65,9 +69,13 @@
                 @Html.DisplayFor(modelItem => item.costohora)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.idasesor }) |
-                @Html.ActionLink("Details", "Details", new { id=item.idasesor }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.idasesor })
+
+                <button type="button" class="btn btn-info">@Html.ActionLink("EDITAR", "Edit", new { id = item.idasesor })</button>
+                <button type="button" class="btn btn-info">@Html.ActionLink("DETALLES", "Details", new { id = item.idasesor })</button>
+                <button type="button" class="btn btn-info">@Html.ActionLink("ELIMINAR", "Delete", new { id = item.idasesor })</button>
+     
+          
+           
             </td>
         </tr>
     }

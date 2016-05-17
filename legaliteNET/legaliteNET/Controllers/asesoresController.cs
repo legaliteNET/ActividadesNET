@@ -23,9 +23,16 @@ namespace legaliteNET.Controllers
         // GET: asesores
         public ActionResult Index()
         {
-            return View(db.asesores.ToList());
-        }
-
+            string nivel = Session["xrol"].ToString();
+            if (nivel == "2")
+            {
+                return View(db.asesores.ToList());
+                
+            }
+            else {
+                return Redirect("~/default");
+            }
+        }        
         // GET: asesores/Details/5
         public ActionResult Details(int? id)
         {
@@ -153,7 +160,7 @@ namespace legaliteNET.Controllers
                         FormsAuthentication.SetAuthCookie(user.nombreusuario, false);
 
                         String nombreusuario = usua.First().nombreusuario;
-                        Session["username"] = user.nombreusuario;
+                        Session["username"] = usua.First().nombreusuario;
                         Session["asesorid"] = usua.First().idasesor;
                         Session["asesornombre"] = usua.First().nombre;
                         Session["xrol"] = usua.First().nivel;
@@ -170,7 +177,7 @@ namespace legaliteNET.Controllers
                     }
                     else
                     {
-                        return View("index", "asesores");
+                        return View("index");
                     }
                 }
             }
@@ -193,17 +200,11 @@ namespace legaliteNET.Controllers
 
         public ActionResult CerrarSesion()
         {
-            HttpCookie myCookie = new HttpCookie("cmq");
-            myCookie.Expires = DateTime.Now.AddDays(-1d);
-            Response.Cookies.Add(myCookie);
-            string[] cookies = Request.Cookies.AllKeys;
-            foreach (string cookie in cookies)
-            {
-                Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
-            }
-            Session.Clear();
+            
             Session.Abandon();
-            return Redirect("~/Default");
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            FormsAuthentication.SignOut();
+            return Redirect("~/asesores/logIn");
 
 
         }
