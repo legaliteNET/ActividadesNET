@@ -163,14 +163,14 @@ namespace legaliteNET.Controllers
                             Session["asesorid"] = usua.First().idasesor;
                             Session["asesornombre"] = usua.First().nombre;
                             Session["xrol"] = usua.First().nivel;
-                            return RedirectToAction("index", "asesores");
+                            return RedirectToAction("index");
                         }               
 
-                        return RedirectToAction("index", "asesores");
+                        return RedirectToAction("index");
                     }
                     else
                     {
-                        return View("login", "asesores");
+                        return View("index", "asesores");
                     }
                 }
             }
