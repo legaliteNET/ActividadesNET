@@ -17,7 +17,19 @@ namespace legaliteNET.Controllers
         // GET: clientes1
         public ActionResult Index()
         {
-            return View(db.clientes.ToList());
+            if (Session["nombreuser"] != null)
+
+            {
+                return View(db.clientes.ToList());
+                
+
+            }
+
+            else
+            {
+
+                return Redirect("~/asesores/logIn");
+            }
         }
 
         // GET: clientes1/Details/5
