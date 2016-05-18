@@ -20,7 +20,7 @@ namespace legaliteNET
         }
         protected void Session_End(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/clientes");
+            HttpContext.Current.Response.Redirect("~/asosores/logIn");
         }
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
@@ -31,13 +31,13 @@ namespace legaliteNET
             {
                 string controllerName = rd.GetRequiredString("controller");
                 string actionName = rd.GetRequiredString("action");
-                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~/asesores"); }
+                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~asesores/logIn"); }
                 else
                 {
                     if (Session["xrol"] != null)
                     {
                         int role = Convert.ToInt32(Session["xrol"].ToString());
-                        if (role == 1 && controllerName != "clientes" && controllerName != "asesores" && controllerName != "actividades" && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/"); };
+                        if (role == 1 && controllerName != "clientes1" && controllerName != "asesores" && controllerName != "actividades" && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/default"); };
                         if (role == 2 && (controllerName == "Entidad_Servidor" || controllerName == "Tipo_Requerimiento")) { HttpContext.Current.Response.Redirect("~/"); };
                       
                         }

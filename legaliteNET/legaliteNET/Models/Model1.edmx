@@ -169,7 +169,6 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="valor" Type="Int32" />
           <NavigationProperty Name="solicitudes" Relationship="Self.FK_solicitudes_clientes" FromRole="clientes" ToRole="solicitudes" />
         </EntityType>
         <EntityType Name="detallesolicitud">
@@ -309,7 +308,6 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="departamento" ColumnName="departamento" />
-                <ScalarProperty Name="valor" ColumnName="valor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
