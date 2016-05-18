@@ -20,7 +20,7 @@ namespace legaliteNET
         }
         protected void Session_End(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/asosores/logIn");
+            HttpContext.Current.Response.Redirect("~/asesores/logIn");
         }
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace legaliteNET
             {
                 string controllerName = rd.GetRequiredString("controller");
                 string actionName = rd.GetRequiredString("action");
-                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~asesores/logIn"); }
+                if (Session["username"] == null && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~/asesores/logIn"); }
                 else
                 {
                     if (Session["xrol"] != null)

@@ -191,10 +191,10 @@ namespace legaliteNET.Controllers
             return View(user);
         }
 
-        private bool IsValid(string nombreusuario, string password)
+        private bool IsValid(string username, string password)
         {
             var usua = from a in db.asesores
-                       where a.nombreusuario == nombreusuario && a.password == password
+                       where a.nombreusuario == username && a.password == password
                        select a.nombreusuario;
 
             if (usua.Count() > 0)
@@ -202,6 +202,7 @@ namespace legaliteNET.Controllers
                 return true;
             }
             else return false;
+
 
         }
 

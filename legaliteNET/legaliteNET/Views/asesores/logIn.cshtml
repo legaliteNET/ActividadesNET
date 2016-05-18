@@ -30,7 +30,7 @@
                 <h1 class="text-light">Inicio de sesión</h1>
                 <div>@Html.Label("Nombre de usuario") </div>
                 <div class="input-control text full-size" data-role="input">
-                    <label for="Documento">Documento</label>
+                    <label for="Documento"></label>
                     @Html.EditorFor(model => model.nombreusuario, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.nombreusuario)
                     <button class="button helper-button clear"><span class="mif-cross"></span></button>
@@ -39,7 +39,7 @@
                 <div>@Html.Label("Contraseña") </div>
                 <div class="section">
                     <div class="input-control password full-size" data-role="input">
-                    <label for="Contrasena">Contraseña</label>
+                    <label for="Contrasena"></label>
                     @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.password)
                     <button class="button helper-button reveal"><span class="mif-looks"></span></button>
