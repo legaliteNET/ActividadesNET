@@ -21,43 +21,76 @@
                         });</script>
     }
         <div class="text-center mb20">
-            <img src="~/assets/img/logo_login_form.png" class="img-responsive"
+            <img src="~/assets/img/letrero.png" class="img-responsive"
                  alt="Logo" />
         </div>
         <div class="panel mw320">
             <div class="panel-body pn mv10">
 
-                <h1 class="text-light">Inicio de sesión</h1>
+                <h3 class="text-light">Inicio de sesión</h3>
+
+
+
+
+
                 <div>@Html.Label("Nombre de usuario") </div>
-                <div class="input-control text full-size" data-role="input">
-                    <label for="Documento"></label>
-                    @Html.EditorFor(model => model.nombreusuario, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.nombreusuario)
-                    <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                <div class="section">
+                   
+
+                    <label for="nombredeusurio" class="field prepend-icon">
+
+                        @Html.EditorFor(model => model.nombreusuario, new { htmlAttributes = new { @class = "gui-input" } })
+                        @Html.ValidationMessageFor(model => model.nombreusuario)
+
+                        <label for="nombredeusuario" class="field-icon">
+                            <i class="fa fa-user"></i>
+                        </label>
+                    </label>
                 </div>
 
-                <div>@Html.Label("Contraseña") </div>
+
+             
+
+                <div>@Html.Label("Password") </div>
+
                 <div class="section">
-                    <div class="input-control password full-size" data-role="input">
-                    <label for="Contrasena"></label>
-                    @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.password)
-                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                    
+
+                    <label for="password" class="field prepend-icon">
+
+                        @Html.PasswordFor(model => model.password, new { @class = "gui-input" } )
+                        @Html.ValidationMessageFor(model => model.password)
+
+                        <label for="password" class="field-icon">
+                            <i class="fa fa-lock"></i>
+                        </label>
+                    </label>
                 </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                     <button type="submit" class="btn btn-bordered btn-primary pull-left">Entrar</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        @Html.ValidationSummary(true, "Favor verificar, datos erroneos")
-                    </div>
+
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-bordered btn-primary pull-left">Entrar</button>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+
+                    @Html.ValidationSummary(true, "Favor verificar, datos errones")
+
+
+                </div>
+
+            </div>
+
+
         </div>
+
 }
 </div>
 

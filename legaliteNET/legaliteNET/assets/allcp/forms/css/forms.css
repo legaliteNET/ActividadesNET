@@ -55,7 +55,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 400;
-  color: #626262;
+  color: black;
   outline: none;
 }
 .allcp-form .radio,
@@ -2700,8 +2700,8 @@
 }
 .allcp-form .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
-  border: 1px solid #DDD;
+  background-color: transparent;
+  border: 1px solid transparent
 }
 .allcp-form .panel-heading {
   overflow: hidden;

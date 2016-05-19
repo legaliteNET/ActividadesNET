@@ -8088,6 +8088,8 @@ table {
 td,
 th {
   padding: 0;
+
+  color: black;
 }
 @media print {
   * {
@@ -8192,7 +8194,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #67d3e0;
+  color: white;
   text-decoration: none;
 }
 a:hover,
@@ -9774,9 +9776,9 @@ output {
   font-size: 14px;
   line-height: 1.49;
   color: #555555;
-  background-color: #ffffff;
+  background-color: transparent;
   background-image: none;
-  border: 1px solid #dddddd;
+  border: 2px solid black;
   border-radius: 3px;
   -webkit-appearance: none;
   -webkit-transition: border-color ease-in-out .15s;
@@ -12629,8 +12631,9 @@ a.list-group-item:focus {
 .panel {
   position: relative;
   margin-bottom: 45px;
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 4px;
+  box-shadow:0 1px 40px 0 rgba(0, 0, 0, 0.3);
 }
 .panel.panel-transparent {
   background: none;
@@ -12699,7 +12702,7 @@ a.list-group-item:focus {
   height: 52px;
   line-height: 49px;
   letter-spacing: 0.2px;
-  color: #a9acbd;
+  color: black;
   font-size: 15px;
   font-weight: 400;
   padding: 0 13px;
@@ -12770,7 +12773,7 @@ a.list-group-item:focus {
 }
 #content .panel {
   -webkit-box-shadow: 1px 2px 0 #e5eaee;
-  box-shadow: 1px 2px 0 #e5eaee;
+   box-shadow:0 1px 40px 0 rgba(0, 0, 0, 0.3);
   padding: 25px;
 }
 #content .panel .panel-heading {
@@ -18465,8 +18468,12 @@ body.sb-top #sidebar_top_toggle {
 }
 #content.table-layout > div,
 #content.table-layout > section {
-  vertical-align: top;
-  padding: 45px 32px 50px;
+  
+overflow:hidden; 
+background: url("../../../img/patterns/backgrounds/3.jpg") ;
+
+  background-repeat: no-repeat;        
+    position: relative;
 }
 #content.table-layout > aside {
   vertical-align: top;
