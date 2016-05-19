@@ -10,27 +10,19 @@ using legaliteNET.Models;
 
 namespace legaliteNET.Controllers
 {
-    public class clientes1Controller : Controller
+    public class clientesController : Controller
     {
         private legaliteEntities db = new legaliteEntities();
 
-        // GET: clientes1
+        // GET: clientes
         public ActionResult Index()
         {
-            if (Session["nombreuser"] != null)
-            {
-                return RedirectToAction("logIn", "asesores");
-                
-            }
-            else
-            {
-                return View(db.clientes.ToList());
-            }
-            
+            ViewBag.Controlador = "clientes";
+            ViewBag.Title = "Index";
+            return View(db.clientes.ToList());
         }
 
-
-        // GET: clientes1/Details/5
+        // GET: clientes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +30,8 @@ namespace legaliteNET.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             cliente cliente = db.clientes.Find(id);
+            ViewBag.Controlador = "clientes";
+            ViewBag.Title = "Detalles";
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -45,30 +39,32 @@ namespace legaliteNET.Controllers
             return View(cliente);
         }
 
-        // GET: clientes1/Create
+        // GET: clientes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: clientes1/Create
+        // POST: clientes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nit,nombreusuario,password,nombre,departamento")] cliente cliente)
+        public ActionResult Create([Bind(Include = "nit,nombreusuario,password,nombre,departamento,valor")] cliente cliente)
         {
             if (ModelState.IsValid)
             {
                 db.clientes.Add(cliente);
                 db.SaveChanges();
+                ViewBag.Controlador = "clientes";
+                ViewBag.Title = "crear";
                 return RedirectToAction("Index");
             }
 
             return View(cliente);
         }
 
-        // GET: clientes1/Edit/5
+        // GET: clientes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +72,8 @@ namespace legaliteNET.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             cliente cliente = db.clientes.Find(id);
+            ViewBag.Controlador = "clientes";
+            ViewBag.Title = "Editar";
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -83,12 +81,12 @@ namespace legaliteNET.Controllers
             return View(cliente);
         }
 
-        // POST: clientes1/Edit/5
+        // POST: clientes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "nit,nombreusuario,password,nombre,departamento")] cliente cliente)
+        public ActionResult Edit([Bind(Include = "nit,nombreusuario,password,nombre,departamento,valor")] cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +97,7 @@ namespace legaliteNET.Controllers
             return View(cliente);
         }
 
-        // GET: clientes1/Delete/5
+        // GET: clientes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +105,8 @@ namespace legaliteNET.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             cliente cliente = db.clientes.Find(id);
+            ViewBag.Controlador = "clientes";
+            ViewBag.Title = "Eliminar";
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace legaliteNET.Controllers
             return View(cliente);
         }
 
-        // POST: clientes1/Delete/5
+        // POST: clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

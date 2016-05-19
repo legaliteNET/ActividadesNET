@@ -34,6 +34,9 @@ namespace legaliteNET.Controllers
 
                 else
                 {
+                ViewBag.Controlador = "asesores";
+                ViewBag.Title = "Index";
+
                 return View(db.asesores.ToList());
                 
                 }
@@ -50,10 +53,13 @@ namespace legaliteNET.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             asesore asesore = db.asesores.Find(id);
+            ViewBag.Controlador = "asesores";
+            ViewBag.Title = "Detalles";
             if (asesore == null)
             {
                 return HttpNotFound();
             }
+            
             return View(asesore);
         }
 
@@ -70,8 +76,12 @@ namespace legaliteNET.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idasesor,nombreusuario,password,nivel,nombre,salariobasico,costodiario,costohora")] asesore asesore)
         {
+
             if (ModelState.IsValid)
+
             {
+                ViewBag.Controlador = "asesores";
+                ViewBag.Title = "Crear";
                 db.asesores.Add(asesore);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,6 +97,8 @@ namespace legaliteNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.Controlador = "asesores";
+            ViewBag.Title = "Editar";
             asesore asesore = db.asesores.Find(id);
             if (asesore == null)
             {
@@ -104,6 +116,7 @@ namespace legaliteNET.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(asesore).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -118,6 +131,8 @@ namespace legaliteNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.Controlador = "asesores";
+            ViewBag.Title = "Eliminar";
             asesore asesore = db.asesores.Find(id);
             if (asesore == null)
             {

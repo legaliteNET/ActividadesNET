@@ -27,8 +27,7 @@ namespace legaliteNET.Models
     
         public virtual DbSet<actividade> actividades { get; set; }
         public virtual DbSet<asesore> asesores { get; set; }
-        public virtual DbSet<cliente> clientes { get; set; }
-        public virtual DbSet<detallesolicitud> detallesolicituds { get; set; }
         public virtual DbSet<solicitude> solicitudes { get; set; }
+        public virtual DbSet<cliente> clientes { get; set; }
     }
 }

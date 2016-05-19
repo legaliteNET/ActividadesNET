@@ -2007,7 +2007,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\asesoresController.cs" />
-    <Compile Include="Controllers\clientes1Controller.cs" />
+    <Compile Include="Controllers\clientesController.cs" />
+    <Compile Include="Controllers\solicitudesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2018,9 +2019,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\cliente.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\detallesolicitud.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -2065,16 +2063,21 @@
     <Content Include="Views\actividades\Details.cshtml" />
     <Content Include="Views\actividades\Edit.cshtml" />
     <Content Include="Views\actividades\Index.cshtml" />
-    <Content Include="Views\clientes1\Create.cshtml" />
-    <Content Include="Views\clientes1\Delete.cshtml" />
-    <Content Include="Views\clientes1\Details.cshtml" />
-    <Content Include="Views\clientes1\Edit.cshtml" />
-    <Content Include="Views\clientes1\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\asesores\CerrarSesion.cshtml" />
+    <Content Include="Views\solicitudes\Create.cshtml" />
+    <Content Include="Views\solicitudes\Delete.cshtml" />
+    <Content Include="Views\solicitudes\Details.cshtml" />
+    <Content Include="Views\solicitudes\Edit.cshtml" />
+    <Content Include="Views\solicitudes\Index.cshtml" />
+    <Content Include="Views\clientes\Create.cshtml" />
+    <Content Include="Views\clientes\Delete.cshtml" />
+    <Content Include="Views\clientes\Details.cshtml" />
+    <Content Include="Views\clientes\Edit.cshtml" />
+    <Content Include="Views\clientes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2084,7 +2087,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ControllerBase\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

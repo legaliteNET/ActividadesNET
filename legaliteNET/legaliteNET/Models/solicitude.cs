@@ -14,12 +14,6 @@ namespace legaliteNET.Models
     
     public partial class solicitude
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public solicitude()
-        {
-            this.detallesolicituds = new HashSet<detallesolicitud>();
-        }
-    
         public int idsolicitud { get; set; }
         public Nullable<int> nitcliente { get; set; }
         public Nullable<int> idasesor { get; set; }
@@ -33,7 +27,5 @@ namespace legaliteNET.Models
         public virtual actividade actividade { get; set; }
         public virtual asesore asesore { get; set; }
         public virtual cliente cliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detallesolicitud> detallesolicituds { get; set; }
     }
 }
