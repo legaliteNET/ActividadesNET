@@ -42,6 +42,7 @@ window.smartsupp||(function(d) {
     </script>
 </head>
 <body class="dashboard-page">
+
     <div id="customizer" class="hidden-xs">
         <div class="panel">
             <div class="panel-heading">
@@ -397,9 +398,14 @@ window.smartsupp||(function(d) {
                                 </a>
                             </li>
                             <li>
-                                <a href="~/solicitudes/index">
-                                    <span class="glyphicon glyphicon-modal-window"></span> Reporte por Asesor
-                                </a>
+                                @{
+                                    var fecha1 = "2016-05-01 00:00:00";
+                                    var fecha2 = "2016-05-02 00:00:00";
+                                }
+                                   @Html.ActionLink("Reporte por Asesor", "../solicitudes/reportePorFechas/", new { fechainicio = fecha1, fechafin = fecha2 }, new AjaxOptions { HttpMethod="Post"})
+                                            
+                                                 
+                                
                             </li>
                             <li>
                                 <a href="management-tools-dock.html">
@@ -610,7 +616,7 @@ window.smartsupp||(function(d) {
 
                     <div class="row">
                         <div class="col-xs-5">
-                            <h3 class="text-primary mn pl5">660</h3>
+                            <h3 class="text-primary mn pl5">@ViewBag.total</h3>
                         </div>
                         <div class="col-xs-7 text-right">
                             <h3 class="text-success-dark mn">

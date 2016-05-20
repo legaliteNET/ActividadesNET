@@ -38,7 +38,7 @@ namespace legaliteNET
                     {
                         int role = Convert.ToInt32(Session["xrol"].ToString());
                         if (role == 1 && controllerName != "clientes" && controllerName != "asesores" && controllerName != "actividades" && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/default"); };
-                        if (role == 2 && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/default"); };
+                        if (role == 2 && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/solicitudes/index"); };
                       
                         }
                 }

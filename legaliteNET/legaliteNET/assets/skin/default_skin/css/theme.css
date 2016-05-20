@@ -9778,7 +9778,7 @@ output {
   color: #555555;
   background-color: transparent;
   background-image: none;
-  border: 2px solid black;
+  border: 1px solid #DDD;
   border-radius: 3px;
   -webkit-appearance: none;
   -webkit-transition: border-color ease-in-out .15s;
@@ -18468,12 +18468,8 @@ body.sb-top #sidebar_top_toggle {
 }
 #content.table-layout > div,
 #content.table-layout > section {
-  
-overflow:hidden; 
-background: url("../../../img/patterns/backgrounds/3.jpg") ;
-
-  background-repeat: no-repeat;        
-    position: relative;
+ vertical-align: top;
+  padding: 45px 32px 50px;
 }
 #content.table-layout > aside {
   vertical-align: top;

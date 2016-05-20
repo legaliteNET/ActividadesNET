@@ -192,7 +192,7 @@ namespace legaliteNET.Controllers
                             Session["asesorid"] = usua.First().idasesor;
                             Session["asesornombre"] = usua.First().nombre;
                             Session["xrol"] = usua.First().nivel;
-                            return RedirectToAction("index");
+                            return RedirectToAction("`~/solicitudes/index");
                         }               
 
                         return RedirectToAction("index");

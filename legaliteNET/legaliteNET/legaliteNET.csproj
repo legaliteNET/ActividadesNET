@@ -2078,6 +2078,7 @@
     <Content Include="Views\clientes\Details.cshtml" />
     <Content Include="Views\clientes\Edit.cshtml" />
     <Content Include="Views\clientes\Index.cshtml" />
+    <Content Include="Views\solicitudes\reportePorFechas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
