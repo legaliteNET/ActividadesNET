@@ -4,56 +4,104 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
 
-<h2>Details</h2>
+<html>
+<head>
 
-<div>
-    <h4>cliente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombreusuario)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombreusuario)
-        </dd>
+</head>
+<body>
+    <div class="chute chute-center">
+        <div class="mw1000 center-block">
+            <section id="content" class="table-layout animated fadeIn">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+                <div class="allcp-form theme-primary tab-pane active mw600" id="login" role="tabpanel">
+                    <div class="panel fluid-width">
+                        <div class="form-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.departamento)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.departamento)
-        </dd>
+                            <div class="panel-heading">
+                                <span class="panel-title hidden-xs">DETALLE DE CLIENTE</span>
+                            </div>
+                            <div class="panel-body pn">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.valor)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.valor)
-        </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.nit }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Nombre de Usuario
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.nombreusuario)
+                                    </dd>
+
+                                    <dt>
+                                        Password
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.password)
+                                    </dd>
+
+
+
+                                    <dt>
+                                        Nombre
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.nombre)
+                                    </dd>
+
+                                    <dt>
+                                        Departamento
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.departamento)
+                                    </dd>
+
+                                    <dt>
+                                        Valor
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.valor)
+                                    </dd>
+
+
+
+                                </dl>
+
+
+                                <p>
+
+
+                                    <button type="submit" class="btn btn-bordered btn-primary pull-right">@Html.ActionLink("Salir ", "Index")</button>
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+
+</body>
+</html>
+

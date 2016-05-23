@@ -185,21 +185,19 @@ namespace legaliteNET.Controllers
                         Session["asesorid"] = usua.First().idasesor;
                         Session["asesornombre"] = usua.First().nombre;
                         Session["xrol"] = usua.First().nivel;
-                        if (usua.First().nivel == 2)
-                        {
-                            Session["username"] = user.nombreusuario;
-                            Session["asesorid"] = usua.First().idasesor;
-                            Session["asesornombre"] = usua.First().nombre;
-                            Session["xrol"] = usua.First().nivel;
-                            return RedirectToAction("`~/solicitudes/index");
-                        }               
-
                         return RedirectToAction("index");
                     }
-                    else
+                    else if (usua.First().nivel == 2)
                     {
-                        return View("index");
+                        FormsAuthentication.SetAuthCookie(user.nombreusuario, false);
+                        String nombreusuario = user.nombreusuario;
+                        Session["username"] = user.nombreusuario;
+                        Session["asesorid"] = usua.First().idasesor;
+                        Session["asesornombre"] = usua.First().nombre;
+                        Session["xrol"] = usua.First().nivel;
+                        return RedirectToAction("../solicitudes/index");
                     }
+                    
                 }
             }
             return View(user);
@@ -223,10 +221,12 @@ namespace legaliteNET.Controllers
         public ActionResult CerrarSesion()
         {
             
+            Session.Clear();
+            Session["xrol"] = "";
             Session.Abandon();
             Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
             FormsAuthentication.SignOut();
-            return Redirect("~/asesores/logIn");
+            return Redirect("../asesores/logIn");
 
 
         }

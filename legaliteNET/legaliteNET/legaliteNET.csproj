@@ -2079,11 +2079,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\asesores\CerrarSesion.cshtml" />
-    <Content Include="Views\solicitudes\Create.cshtml" />
     <Content Include="Views\solicitudes\Delete.cshtml" />
     <Content Include="Views\solicitudes\Details.cshtml" />
-    <Content Include="Views\solicitudes\Edit.cshtml" />
-    <Content Include="Views\solicitudes\Index.cshtml" />
     <Content Include="Views\clientes\Create.cshtml" />
     <Content Include="Views\clientes\Delete.cshtml" />
     <Content Include="Views\clientes\Details.cshtml" />
@@ -2092,6 +2089,9 @@
     <Content Include="Views\solicitudes\reportePorFechas.cshtml" />
     <Content Include="Views\Reportes\ActividadesEnElMes.cshtml" />
     <Content Include="Views\Reportes\Trabajos_del_mes_asesor.cshtml" />
+    <Content Include="Views\solicitudes\Index.cshtml" />
+    <Content Include="Views\solicitudes\Create.cshtml" />
+    <Content Include="Views\solicitudes\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

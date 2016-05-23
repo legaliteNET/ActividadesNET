@@ -20,7 +20,7 @@ namespace legaliteNET
         }
         protected void Session_End(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Redirect("~/asesores/logIn");
+            HttpContext.Current.Response.Redirect("../../asesores/logIn");
         }
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
@@ -38,7 +38,7 @@ namespace legaliteNET
                     {
                         int role = Convert.ToInt32(Session["xrol"].ToString());
                         if (role == 1 && controllerName != "clientes" && controllerName != "asesores" && controllerName != "actividades" && controllerName != "solicitudes" && controllerName != "Reportes") { HttpContext.Current.Response.Redirect("~/default"); };
-                        if (role == 2 && controllerName != "solicitudes") { HttpContext.Current.Response.Redirect("~/solicitudes/index"); };
+                        if (role == 2 && controllerName != "solicitudes" && controllerName != "asesores") { HttpContext.Current.Response.Redirect("~/solicitudes/index"); };
                       
                         }
                 }

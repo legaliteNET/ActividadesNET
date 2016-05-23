@@ -1,0 +1,89 @@
+﻿@model legaliteNET.Models.solicitude
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>solicitude</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaHoraInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaHoraInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaHoraFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaHoraFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requerimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requerimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.actividade.actividad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.actividade.actividad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asesore.nombreusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asesore.nombreusuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente.nombreusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente.nombreusuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

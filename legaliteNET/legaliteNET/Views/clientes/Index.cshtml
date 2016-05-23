@@ -5,54 +5,147 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombreusuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.departamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valor)
-        </th>
-        <th></th>
-    </tr>
+<!DOCTYPE html>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreusuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.departamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valor)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.nit }) |
-            @Html.ActionLink("Details", "Details", new { id=item.nit }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.nit })
-        </td>
-    </tr>
-}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cree nuevo asesor</title>
+</head>
+<body>
 
-</table>
+    <div id="main">
+        <section id="content" class="table-layout animated fadeIn">
+
+
+            <div class="chute chute-center">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel">
+
+                            <div align="right">
+
+                                <button type="button" class="btn btn-bordered btn-primary pull-right" data-container="body" data-toggle="popover" data-placement="left" title="" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="Popover Title">
+                                    @Html.ActionLink("CREAR NUEVO ASESOR", "Create")
+                                </button>
+                            </div>
+
+                            <br>
+                            <div class="panel-heading">
+                                <span class="panel-title hidden-xs">LISTADO DE CLIENTES</span>
+                            </div>
+                            <div class="panel-body pn">
+                                <div class="table-responsive">
+
+                                    <table class="table allcp-form theme-warning tc-checkbox-1 fs13">
+                                        <thead>
+                                            <tr class="bg-light">
+                                                <th> </th>
+                                                <th> NOMBRE DE USUARIO</th>
+                                                <th>PASSWORD </th>
+                                         
+                                                <th>NOMBRE</th>
+                                                <th>DEPARTAMENTO</th>
+                                                <th>VALOR</th>
+                                               
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model)
+                                            {
+
+
+                                                <tr>
+
+                                                    <td class="w100">
+                                                        <img class="img-responsive mw40 ib mr10" title="user"
+                                                             src="~/assets/img/usuario.png">
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.nombreusuario)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.password)
+                                                    </td>
+                                               
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.nombre)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.valor)
+                                                    </td>
+
+                                                    <td class="text-right">
+
+
+                                                        <div class="btn-group text-right">
+                                                            <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                                Opciones
+                                                                <span class="caret ml5"></span>
+                                                            </button>
+
+
+
+                                                            <ul class="dropdown-menu" role="menu">
+
+                                                                <li>
+
+                                                                    <a>@Html.ActionLink("EDITAR", "Edit", new { id = item.nit })</a>
+                                                                </li>
+                                                                <li>
+
+                                                                    <a>@Html.ActionLink("DETALLES", "Details", new { id = item.nit})</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a>@Html.ActionLink("ELIMINAR", "Delete", new { id = item.nit })</a>
+                                                                </li>
+
+
+                                                            </ul>
+
+                                                        </div>
+
+                                                    </td>
+
+                                                </tr>
+
+
+
+                                            }
+                                        </tbody>
+
+
+                                    </table>
+
+
+
+
+
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
