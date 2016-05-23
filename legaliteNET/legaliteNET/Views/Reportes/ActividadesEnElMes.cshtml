@@ -1,0 +1,89 @@
+﻿@model IEnumerable<legaliteNET.Models.ActividadesEnElMes_Result>
+@{
+    ViewBag.Title = "ActividadesEnElMes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Actividades En El Mes</h2>
+<p>
+    @Html.ActionLink("Descargar PDF", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaHoraInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaHoraFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asesor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.actividad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costohora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requerimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaHoraInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaHoraFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asesor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.actividad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costohora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Requerimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+        </tr>
+    }
+
+
+
+
+
+
+</table>
+
+

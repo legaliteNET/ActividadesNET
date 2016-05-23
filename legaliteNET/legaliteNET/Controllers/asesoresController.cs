@@ -159,10 +159,9 @@ namespace legaliteNET.Controllers
             {
                 return View("logIn", "");
             }
-            else
-            {
+           
                 return Redirect("~/");
-            }
+            
         }
 
         [HttpPost]

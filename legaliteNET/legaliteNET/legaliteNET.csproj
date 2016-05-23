@@ -2008,11 +2008,15 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\asesoresController.cs" />
     <Compile Include="Controllers\clientesController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\solicitudesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\actividade.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActividadesEnElMes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\asesore.cs">
@@ -2021,6 +2025,7 @@
     <Compile Include="Models\cliente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2038,6 +2043,12 @@
     </Compile>
     <Compile Include="Models\persona.cs" />
     <Compile Include="Models\solicitude.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trabajos_del_mes_asesor_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trabajos_del_mes_asesor_Result1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2079,6 +2090,8 @@
     <Content Include="Views\clientes\Edit.cshtml" />
     <Content Include="Views\clientes\Index.cshtml" />
     <Content Include="Views\solicitudes\reportePorFechas.cshtml" />
+    <Content Include="Views\Reportes\ActividadesEnElMes.cshtml" />
+    <Content Include="Views\Reportes\Trabajos_del_mes_asesor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

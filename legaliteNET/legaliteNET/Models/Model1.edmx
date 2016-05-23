@@ -87,6 +87,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Trabajos_del_mes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Trabajos_del_mes_asesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idasesor" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="legaliteModelStoreContainer">
           <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="asesores" EntityType="Self.asesores" Schema="dbo" store:Type="Tables" />
@@ -190,6 +194,13 @@
             <End Role="cliente" EntitySet="clientes" />
             <End Role="solicitude" EntitySet="solicitudes" />
           </AssociationSet>
+          <FunctionImport Name="ActividadesEnElMes" ReturnType="Collection(legaliteModel.ActividadesEnElMes_Result)" />
+          <FunctionImport Name="Trabajos_del_mes_asesor" ReturnType="Collection(legaliteModel.Trabajos_del_mes_asesor_Result)">
+            <Parameter Name="idasesor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Trabajos_del_mes_asesores" ReturnType="Collection(legaliteModel.Trabajos_del_mes_asesor_Result1)">
+            <Parameter Name="idasesor" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="cliente">
           <Key>
@@ -215,6 +226,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ActividadesEnElMes_Result">
+          <Property Type="DateTime" Name="fechaHoraInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaHoraFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Asesor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Requerimiento" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="costohora" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="horas" Nullable="true" />
+          <Property Type="Decimal" Name="costo" Nullable="true" Precision="29" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="Trabajos_del_mes_asesor_Result">
+          <Property Type="DateTime" Name="fechaHoraInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaHoraFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Asesor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Requerimiento" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="costohora" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="horas" Nullable="true" />
+          <Property Type="Decimal" Name="costo" Nullable="true" Precision="29" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="Trabajos_del_mes_asesor_Result1">
+          <Property Type="DateTime" Name="fechaHoraInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaHoraFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Asesor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Requerimiento" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="costohora" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="horas" Nullable="true" />
+          <Property Type="Decimal" Name="costo" Nullable="true" Precision="29" Scale="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -271,6 +318,54 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActividadesEnElMes" FunctionName="legaliteModel.Store.Trabajos_del_mes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="legaliteModel.ActividadesEnElMes_Result">
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="Asesor" ColumnName="Asesor" />
+                <ScalarProperty Name="Requerimiento" ColumnName="Requerimiento" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="costohora" ColumnName="costohora" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Trabajos_del_mes_asesor" FunctionName="legaliteModel.Store.Trabajos_del_mes_asesor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="legaliteModel.Trabajos_del_mes_asesor_Result">
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="Asesor" ColumnName="Asesor" />
+                <ScalarProperty Name="Requerimiento" ColumnName="Requerimiento" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="costohora" ColumnName="costohora" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Trabajos_del_mes_asesores" FunctionName="legaliteModel.Store.Trabajos_del_mes_asesor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="legaliteModel.Trabajos_del_mes_asesor_Result1">
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="Asesor" ColumnName="Asesor" />
+                <ScalarProperty Name="Requerimiento" ColumnName="Requerimiento" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="costohora" ColumnName="costohora" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

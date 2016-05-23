@@ -402,15 +402,14 @@ window.smartsupp||(function(d) {
                                     var fecha1 = "2016-05-01 00:00:00";
                                     var fecha2 = "2016-05-02 00:00:00";
                                 }
-                                   @Html.ActionLink("Reporte por Asesor", "../solicitudes/reportePorFechas/", new { fechainicio = fecha1, fechafin = fecha2 }, new AjaxOptions { HttpMethod="Post"})
+                                @Html.ActionLink("Reporte actividades por fechas", "../solicitudes/reportePorFechas/", new { fechainicio = fecha1, fechafin = fecha2 }, new AjaxOptions { HttpMethod = "Post" })
                                             
                                                  
                                 
                             </li>
                             <li>
-                                <a href="management-tools-dock.html">
-                                    <span class="glyphicon glyphicon-equalizer"></span>Reporte de Costos
-                                </a>
+                                <input />
+                                @Html.ActionLink("Reporte actividades por Asesor", "../Reportes/Trabajos_del_mes_asesor/", new { idasesor =  }, new AjaxOptions { HttpMethod = "Post" })
                             </li>
                         </ul>
                     </li>

@@ -12,6 +12,8 @@ namespace legaliteNET.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class legaliteEntities : DbContext
     {
@@ -29,5 +31,28 @@ namespace legaliteNET.Models
         public virtual DbSet<asesore> asesores { get; set; }
         public virtual DbSet<solicitude> solicitudes { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
+    
+        public virtual ObjectResult<ActividadesEnElMes_Result> ActividadesEnElMes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ActividadesEnElMes_Result>("ActividadesEnElMes");
+        }
+    
+        public virtual ObjectResult<Trabajos_del_mes_asesor_Result> Trabajos_del_mes_asesor(Nullable<int> idasesor)
+        {
+            var idasesorParameter = idasesor.HasValue ?
+                new ObjectParameter("idasesor", idasesor) :
+                new ObjectParameter("idasesor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Trabajos_del_mes_asesor_Result>("Trabajos_del_mes_asesor", idasesorParameter);
+        }
+    
+        public virtual ObjectResult<Trabajos_del_mes_asesor_Result1> Trabajos_del_mes_asesores(Nullable<int> idasesor)
+        {
+            var idasesorParameter = idasesor.HasValue ?
+                new ObjectParameter("idasesor", idasesor) :
+                new ObjectParameter("idasesor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Trabajos_del_mes_asesor_Result1>("Trabajos_del_mes_asesores", idasesorParameter);
+        }
     }
 }
